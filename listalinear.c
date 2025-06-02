@@ -30,4 +30,6 @@ printf("Informe o valor a ser procurado: ");
 scanf("%d",proc);
 }
 
-
+int inserirno(int *vet){
+    
+}
