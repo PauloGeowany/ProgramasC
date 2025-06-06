@@ -13,6 +13,6 @@ int main(){
     scanf("%d", &b);
 
     int resultado = soma(a,b);
-    printf("A soma entre a e b eh %d", resultado);
-
+    printf("A soma entre a e b eh %d\n", resultado);
+    puts("FIM");
 }
