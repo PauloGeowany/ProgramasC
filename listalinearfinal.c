@@ -1,96 +1,6 @@
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-<<<<<<< HEAD
-#include <locale.h>
-
-int main(){
-    setlocale(LC_ALL, "Portuguese_Brazil");
-
-    int op, val, proc, posret;
-    int tam = 0;
-
-    int *vet = calloc(tam,sizeof(int));
-    while(op != 0){
-        puts("-----------------------------");
-        puts("SELECIONE A OPERACAO DESEJADA");
-        puts("-----------------------------");
-        puts("0) Encerrar programa");
-        puts("1) Criar uma lista vazia");  
-        puts("2) Inserir um nÛ na lista");
-        puts("3) Exibir vetor");
-        puts("4) Pesquisar um item na lista");
-        puts("5) Remover nÛ da lista");
-        puts("6) Inserir ultimo nÛ na lista");
-        puts("7) Realizar pesquisa bin·ria");
-        puts("8) Remover nÛ ordenadamente da lista");
-        puts("9) Remover o n-Èsimo termo da lista");    
-
-        printf("OP: ");
-        scanf("%d", &op);
-
-        switch (op)
-        {
-        case 1:
-            free(vet);
-            vet = NULL;
-            tam = 0;
-            break;
-
-        case 2:
-            printf("Insira o valor a ser adicionado ao vetor: ");
-            scanf("%d", &val);
-            tam++;
-            vet = realloc(vet, tam * sizeof(int));
-            vet[tam-1] = val;
-            break;
-
-        case 3:
-            puts("VALORES DO VETOR: ");
-            for(int c=0; c < tam; c++){
-                printf("%d\n", vet[c]);
-                
-            }
-            printf("\n");
-            break;
-
-        case 4:
-            int achado = 0;
-            printf("Insira o valor a ser procurado: ");
-            scanf("%d", &proc);
-            for(int c = 0; c < tam; c++){
-                if (vet[c] == proc)
-                {
-                    printf("O valor est· na posicao %d\n", c);
-                    achado = 1;
-                }
-                
-            }    
-                if (achado == 0)
-                {
-                    puts("VALOR NAO ENCONTRADO");
-                }
-                break;
-
-        case 5:
-            printf("Inira a posiÁ„o do elemento a ser retirado: ");
-            scanf("%d", &posret);
-
-            if (posret >=0 && posret < tam)  {
-               for(int c = posret; c < tam; c++){
-                vet[c] = vet[c+1];
-            }
-            tam--;
-            vet = realloc(vet, tam*sizeof(int));
-
-            } else{
-                puts("POSI«√O INV¡LIDA!");
-            }
-            break;
-        }
-    }
-}
-=======
-#include <string.h>
 
 typedef struct _no
 {
@@ -98,5 +8,104 @@ typedef struct _no
     struct no *proxno; 
 }no;
 
+typedef struct Lista
+{
+    int qtd;
+    no *inicio;
+    no *fim;
+}lista;
 
->>>>>>> b199ad4f01de8e22c6389b45539d2e88807c6b56
+lista CriaLista(){
+    lista novalista;
+    novalista.qtd = 0;
+    novalista.inicio = NULL;
+    novalista.fim = NULL;
+    return novalista;;
+}
+
+void InsereEmLista(lista *novalista, int valor){
+    no *novo = malloc(sizeof(no));
+    if(novo == NULL){
+        return;
+    }
+novo->dado = valor;
+
+novo->proxno = NULL;
+if (novalista->qtd == 0) {
+    novalista->inicio = novo;
+    novalista->fim = novo;
+} else {
+    novalista->fim->proxno = novo;
+    novalista->fim = novo;
+}
+novalista->qtd++;
+    
+}
+
+void exibelista(lista *novalista){
+    if(novalista == NULL || novalista->inicio == NULL){
+        printf("LISTA VAZIA");
+        return;
+    }
+    no *proc = novalista->inicio;
+    while (proc != NULL)
+    {
+        printf("%d\n", proc->dado);
+        proc = proc->proxno;
+    }
+    printf("\n");
+}
+
+int main(){
+    int op;
+    int el;
+    lista Newlist = CriaLista();
+
+    while (op != 0)
+    {
+        puts("-----------------------------");
+        puts("SELECIONE A OPERACAO DESEJADA");
+        puts("-----------------------------");
+        puts("0) Encerrar programa");
+        puts("1) Criar uma lista vazia");  
+        puts("2) Inserir um n√≥ na lista");
+        puts("3) Exibir vetor");
+        puts("4) Pesquisar um item na lista");
+        puts("5) Remover ultimo n√≥ da lista");
+        puts("6) Inserir ultimo n√≥ na lista");
+        puts("7) Realizar pesquisa bin√°ria");
+        puts("8) Remover n√≥ ordenadamente da lista");
+        puts("9) Remover o n-√©simo termo da lista");    
+
+        printf("OP: ");
+        scanf("%d", &op);
+
+    switch (op)
+    {
+    case 1:
+    Newlist.qtd = 0;
+    Newlist.inicio = NULL;
+    Newlist.fim = NULL;
+    break;
+
+    case 2:   
+        puts("Digite o elemento a ser inserido: ");
+        scanf("%d", &el);
+        InsereEmLista(&Newlist, el);
+        break;
+
+    case 3:
+        exibelista(&Newlist);
+        break;
+        }
+
+    } 
+
+}
+
+    
+
+
+
+
+
