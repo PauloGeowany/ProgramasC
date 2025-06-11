@@ -27,6 +27,7 @@ void print_livro(const Livro *livro){
 
 int main(){
    setlocale(LC_ALL, "Portuguese_Brazil");
+   
    Livro *livro_harry = createlivro("Harry Potter", 350, 50.0);
 
    print_livro(livro_harry);
