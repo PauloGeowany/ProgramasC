@@ -58,6 +58,7 @@ void exibelista(lista *novalista){
 
 void proclista(lista *novalista, int n){
     int c = 0;
+    int achou = 0;
     if(novalista == NULL || novalista->inicio == NULL){
         printf("LISTA VAZIA\n");
         return;
@@ -65,18 +66,26 @@ void proclista(lista *novalista, int n){
     no *proc = novalista->inicio;
     while(proc != NULL){
         if(proc->dado == n){
-            printf("ELEMENTO ESTÁ NA POSICAO %d", c);
+            printf("ELEMENTO SE ENCONTRA NA POSICAO %d\n", c);
+            achou = 1;
+            break;  
+        }else{
+            proc = proc->proxno; 
             c++;
-            return;
-            break;
+            continue;
         }
-        //printf("ELEMENTO NAO ENCONTRADO");
+        
     }
+    if (!achou)
+    {
+        puts("ELEMENTO NAO ENCONTRADO");
+    }
+    
 }
 
-lista RemoveUltimoNo(lista *novalista){
+//lista RemoveUltimoNo(lista *novalista){
 
-}
+//}
 
 int main(){
     int op = -1;
@@ -122,7 +131,7 @@ int main(){
 
 
     case 4:
-        puts("Insita o elemento a ser procurado: ");
+        printf("Insita o elemento a ser procurado: ");
         scanf("%d", &el);
         proclista(&Newlist, el);
         }
