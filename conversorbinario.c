@@ -1,13 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Definicao do nó da pilha
 typedef struct No {
     int valor;
     struct No *prox;
 } No;
 
-// Empilha um valor
 void push(No **topo, int valor) {
     No *novo = (No *)malloc(sizeof(No));
     novo->valor = valor;
@@ -15,7 +13,6 @@ void push(No **topo, int valor) {
     *topo = novo;
 }
 
-// Desempilha e retorna o valor do topo
 int pop(No **topo) {
     if (*topo == NULL) {
         printf("Pilha vazia!\n");
@@ -28,7 +25,6 @@ int pop(No **topo) {
     return valor;
 }
 
-// Converte um número decimal para binário usando a pilha
 void converte(int numero) {
     if (numero == 0) {
         printf("0");
