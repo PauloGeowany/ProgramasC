@@ -119,7 +119,7 @@ int main(){
     case 3:
         exibelista(&Newlist);
         break;
-<<<<<<< HEAD
+
 
     case 4:
         puts("Insita o elemento a ser procurado: ");
@@ -128,13 +128,5 @@ int main(){
         }
 
     } 
-
-}
-=======
-    }
->>>>>>> a877e5d43efb22a2f310038f74ffa401e6127c1a
-
-    
-  }
 
 }
