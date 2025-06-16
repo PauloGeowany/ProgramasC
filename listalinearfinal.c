@@ -44,7 +44,7 @@ novalista->qtd++;
 
 void exibelista(lista *novalista){
     if(novalista == NULL || novalista->inicio == NULL){
-        printf("LISTA VAZIA");
+        printf("LISTA VAZIA\n");
         return;
     }
     no *proc = novalista->inicio;
@@ -54,6 +54,28 @@ void exibelista(lista *novalista){
         proc = proc->proxno;
     }
     printf("\n");
+}
+
+void proclista(lista *novalista, int n){
+    int c = 0;
+    if(novalista == NULL || novalista->inicio == NULL){
+        printf("LISTA VAZIA\n");
+        return;
+    }
+    no *proc = novalista->inicio;
+    while(proc != NULL){
+        if(proc->dado == n){
+            printf("ELEMENTO ESTÁ NA POSICAO %d", c);
+            c++;
+            return;
+            break;
+        }
+        //printf("ELEMENTO NAO ENCONTRADO");
+    }
+}
+
+lista RemoveUltimoNo(lista *novalista){
+
 }
 
 int main(){
@@ -97,6 +119,11 @@ int main(){
     case 3:
         exibelista(&Newlist);
         break;
+
+    case 4:
+        puts("Insita o elemento a ser procurado: ");
+        scanf("%d", &el);
+        proclista(&Newlist, el);
         }
 
     } 
