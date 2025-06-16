@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct _no
+typedef struct no
 {
     int dado;
     struct no *proxno; 
@@ -79,7 +79,7 @@ lista RemoveUltimoNo(lista *novalista){
 }
 
 int main(){
-    int op;
+    int op = -1;
     int el;
     lista Newlist = CriaLista();
 
@@ -115,10 +115,11 @@ int main(){
         scanf("%d", &el);
         InsereEmLista(&Newlist, el);
         break;
-
+    
     case 3:
         exibelista(&Newlist);
         break;
+<<<<<<< HEAD
 
     case 4:
         puts("Insita o elemento a ser procurado: ");
@@ -129,10 +130,11 @@ int main(){
     } 
 
 }
+=======
+    }
+>>>>>>> a877e5d43efb22a2f310038f74ffa401e6127c1a
 
     
+  }
 
-
-
-
-
+}
