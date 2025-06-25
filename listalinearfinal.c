@@ -22,6 +22,12 @@ lista CriaLista(){
     novalista.fim = NULL;
     return novalista;;
 }
+void conferelistavazia(lista *novalista){
+    if(novalista == NULL || novalista->inicio == NULL){
+        printf("LISTA VAZIA\n");
+        return;
+    }
+}
 
 void InsereEmLista(lista *novalista, int valor){
     no *novo = malloc(sizeof(no));
@@ -43,10 +49,7 @@ novalista->qtd++;
 }
 
 void exibelista(lista *novalista){
-    if(novalista == NULL || novalista->inicio == NULL){
-        printf("LISTA VAZIA\n");
-        return;
-    }
+    conferelistavazia(novalista);
     no *proc = novalista->inicio;
     while (proc != NULL)
     {
@@ -59,10 +62,7 @@ void exibelista(lista *novalista){
 void proclista(lista *novalista, int n){
     int c = 0;
     int achou = 0;
-    if(novalista == NULL || novalista->inicio == NULL){
-        printf("LISTA VAZIA\n");
-        return;
-    }
+    conferelistavazia(novalista);
     no *proc = novalista->inicio;
     while(proc != NULL){
         if(proc->dado == n){
@@ -79,13 +79,31 @@ void proclista(lista *novalista, int n){
     if (!achou)
     {
         puts("ELEMENTO NAO ENCONTRADO");
-    }
-    
+    } 
 }
 
-//lista RemoveUltimoNo(lista *novalista){
+void removeultimono(lista *novalista){
+    conferelistavazia(novalista);
+    no *proc = novalista->inicio;
 
-//}
+    //Caso haja um unico no:
+    if(proc->proxno == NULL){
+    printf("Removido: %d\n", proc->dado);
+    free(proc);
+    novalista->inicio = NULL;
+    novalista->fim = NULL;
+    novalista->qtd = 0;
+    }
+    while (proc->proxno->proxno != NULL)
+    {
+        proc = proc->proxno;
+    }
+    printf("Removido: %d\n", proc->proxno->dado);
+    free(proc->proxno);          // libera o último nó
+    proc->proxno = NULL;         // corta a ligação com o último
+    novalista->fim = proc;       // atualiza o ponteiro fim
+    novalista->qtd--;
+}
 
 int main(){
     int op = -1;
@@ -134,6 +152,11 @@ int main(){
         printf("Insita o elemento a ser procurado: ");
         scanf("%d", &el);
         proclista(&Newlist, el);
+        break;
+
+    case 5:
+        removeultimono(&Newlist);
+        break;
         }
 
     } 
