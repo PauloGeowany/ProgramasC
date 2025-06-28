@@ -4,7 +4,7 @@
 
 typedef struct no{
     char participante[50];
-    char cpf[10];
+    int cpf;
     struct no *proxno;
 }no;
 
@@ -13,9 +13,9 @@ typedef struct Lista{
     no *inicio;
     no *final;
 
-}lista
+}lista;
 
-lista* novalista(){
+lista* criarlista(){
     lista *novalista = malloc(sizeof(Lista));
     if(novalista == NULL){
         printf("ERRO AO ALOCAR MEMORIA");
@@ -38,26 +38,54 @@ cabeça->proxno = NULL;
 
 }
 
-void inserirnalista(lista *novalista, char nome, char cpf){
+void inserirnalista(lista *novalista, char *nome, int cpf){
 
     no *novo = malloc(sizeof(no));
     if(novo == NULL){
         printf("ERRO AO ALOCAR MEMORIA");
         exit(1);
     }
-
-    strcpy(novalista->final->participante, nome);
-    novalista->final->cpf = cpf;
+    strcpy(novo->participante, nome);
+    novo->cpf = cpf;
 
     novalista->final = novo;
-    novalista->final->proxno = novo;
+    novalista->final->proxno = cabeça->proxno;
     novo->proxno = novalista->inicio->proxno;
     novalista->qtd++;
+}
+
+
+    int sortearnumero(int min, int max){
+        if (min > max) {
+        int temp = min;
+        min = max;
+        max = temp;
+    }
+    return min + rand() % (max - min + 1);
 
 }
 
 int main(){
+    int n,m, cpf;
+    char nome[50];
+    printf("Digite o numero de participantes: ");
+    scanf("%d", &n);
+
+    lista *Newlist =  criarlista();
+
+    for(int c=0; c<n; c++){
+        printf("Digite o nome do participante %d: ", c+1);
+        scanf("%s", nome);
+        printf("Digite o CPF do participante: ");
+        scanf("%d", cpf);
+        inserirnalista(Newlist, nome, cpf);
+    }
+
+
+ 
     
+
+
 }
 
 
