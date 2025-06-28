@@ -40,6 +40,18 @@ void push(pilha *p, char *nome, float pesoAt, float altAt){
     
 }
 
+void pop(pilha *p) {
+    if (p->topo == NULL) {
+        printf("Pilha vazia! Nada a remover.\n");
+        return;
+    }
+
+    no *remover = p->topo;
+    p->topo = remover->proxno; // avança o topo
+    free(remover);             // libera o nó removido
+    p->
+}
+
 int main(){
     pilha *p = CriaPilha(); 
     push(p, "Paulo", 50.0, 1.76);
