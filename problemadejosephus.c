@@ -16,7 +16,7 @@ typedef struct Lista{
 }lista;
 
 lista* criarlista(){
-    lista *novalista = malloc(sizeof(Lista));
+    lista *novalista = malloc(sizeof(lista));
     if(novalista == NULL){
         printf("ERRO AO ALOCAR MEMORIA");
         exit(1);
@@ -28,7 +28,7 @@ lista* criarlista(){
         exit(1);
     }
     
-cabeça->proxno = NULL;
+    cabeça->proxno = NULL;
 
     novalista->inicio = cabeça;
     novalista->final = cabeça;
@@ -48,9 +48,9 @@ void inserirnalista(lista *novalista, char *nome, int cpf){
     strcpy(novo->participante, nome);
     novo->cpf = cpf;
 
-    novalista->final = novo;
-    novalista->final->proxno = cabeça->proxno;
     novo->proxno = novalista->inicio->proxno;
+    novalista->final->proxno = novo;
+    novalista->final = novo;
     novalista->qtd++;
 }
 
@@ -66,7 +66,7 @@ void inserirnalista(lista *novalista, char *nome, int cpf){
 }
 
 int main(){
-    int n,m, cpf;
+    int n, cpf;
     char nome[50];
     printf("Digite o numero de participantes: ");
     scanf("%d", &n);
@@ -77,16 +77,16 @@ int main(){
         printf("Digite o nome do participante %d: ", c+1);
         scanf("%s", nome);
         printf("Digite o CPF do participante: ");
-        scanf("%d", cpf);
+        scanf("%d", &cpf);
         inserirnalista(Newlist, nome, cpf);
     }
 
-
+}
  
     
 
 
-}
+
 
 
 
