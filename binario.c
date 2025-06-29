@@ -65,17 +65,28 @@ void exibepilha(pilha *p){
 }
 
 int main(){
-    int n, resto;
-    pilha *p = criarpilha();
+    int n,m, resto;
+    pilha *p1 = criarpilha();
+    pilha *p2 = criarpilha();
     printf("Escolha um numero: ");
     scanf("%d",&n);
+    m = n;
 
     while (n>0){
         resto = n % 2;
-        push(p, resto);
+        push(p1, resto);
         n = n/2;
     }
     printf("Forma  binaria: ");
-    exibepilha(p);
+    exibepilha(p1);
+    printf("\n");
+
+    while (m>0){
+        resto = m % 8;
+        push(p2, resto);
+        m = m/8;
+    }
+    printf("Forma  octal: ");
+    exibepilha(p2);
     
 }
